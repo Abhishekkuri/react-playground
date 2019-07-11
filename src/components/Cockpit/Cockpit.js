@@ -1,38 +1,31 @@
 import React from "react";
+import Radium from "radium";
 import "./Cockpit.css";
 
 const cockpit = props => {
-  const classes = [];
+  let classes = [];
+  let btnClass = "";
+  let style = props.style;
+  if (props.showPerson) {
+    btnClass = classes.Red;
+  }
 
   if (props.persons.length <= 2) {
-    classes.push("red"); // classes = ['red']
+    classes.push("red");
   }
   if (props.persons.length <= 1) {
-    classes.push("bold"); // classes = ['red', 'bold']
-
-    // const style = {
-    //   backgroundColor: "green",
-    //   color: "white",
-    //   font: "inherit",
-    //   border: "1px solid blue",
-    //   padding: "8px",
-    //   cursor: "pointer",
-    //   ":hover": {
-    //     backgroundColor: "lightgreen",
-    //     color: "black"
-    //   }
-    // };
-
-    return (
-      <div>
-        <h1>Hi, I'm a React App</h1>
-        {/* <p className={classes.join(" ")}>This is really working!</p> */}
-        <p>This is really working!</p>
-        {/* <button style={style} onClick={this.togglePersonsHandler}> */}
-        <button onClick={this.togglePersonsHandler}>Toggle Persons</button>
-      </div>
-    );
+    classes.push("bold");
   }
+
+  return (
+    <div className={classes}>
+      <h1>Hi, I'm a React App</h1>
+      <p className={classes.join(" ")}>This is really working!</p>
+      <button style={style} onClick={props.clicked}>
+        Toggle Persons
+      </button>
+    </div>
+  );
 };
 
-export default cockpit;
+export default Radium(cockpit);
